@@ -1,23 +1,29 @@
 import socket
+import json
 from f1_2020_telemetry.packets import unpack_udp_packet
 from host.utils.data_structure import initialize_data
 
-# UDP setup
-UDP_IP = "127.0.0.1"
-UDP_PORT = 20777
+with open("host/config/udp_settings.json", "r") as udp_settings:
+    config = json.load(udp_settings)
 
-# Create a UDP socket
-sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-sock.bind((UDP_IP, UDP_PORT))
-sock.settimeout(1.0)
+def run():
 
-# drs mapping
-drs_map = { 0: False, 1: True }
+    # UDP setup
+    UDP_IP = config["f1_2020"]["ip"]
+    UDP_PORT = config["f1_2020"]["port"]
+    TIMEOUT = config["f1_2020"]["timeout"]
 
-data = initialize_data()
+    # Create a UDP socket
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock.bind((UDP_IP, UDP_PORT))
+    sock.settimeout(TIMEOUT)
 
-try:
-    while True:
+    # drs mapping
+    drs_map = { 0: False, 1: True }
+
+    data = initialize_data()
+
+    try:
         try:
             # Receive data from the socket
             packet_data, addr = sock.recvfrom(2048)
@@ -44,10 +50,10 @@ try:
                     data["flag"] = fia_flags[0] if fia_flags else 0
                     data["drs_allowed"] = drs_map.get(packet.drsAllowed, False) if hasattr(packet, 'drsAllowed') and packet.drsAllowed is not None else False
 
-                print(data)
+                return data # Return the data after processing
         except socket.timeout:
             print("Socket timed out, waiting for data...")
-except KeyboardInterrupt:
-    print("\nScript interrupted by user.")
-finally:
-    sock.close()
+    except KeyboardInterrupt:
+        print("\nScript interrupted by user.")
+    finally:
+        sock.close()

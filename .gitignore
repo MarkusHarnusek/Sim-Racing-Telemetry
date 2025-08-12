@@ -47,4 +47,9 @@ build/
 *.old
 *.orig
 *.save
-*.vscode
+
+# Default
+
+.vscode/
+__pycache__/
+.theia/

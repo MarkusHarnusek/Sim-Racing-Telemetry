@@ -1,3 +1,8 @@
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 import telemetry.f1_2020 as f1_2020
 import utils.build_packet as build_packet
 import utils.send_packet as send_packet
@@ -11,6 +16,7 @@ def main():
             json_body = build_packet.create_json_packet(data)
             if json_body:
                 send_packet.send_packet(json_body)
+                print("Packet sent successfully:", json_body)
     except KeyboardInterrupt:
         print("\nScript interrupted by user.")
 

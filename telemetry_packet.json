@@ -1,0 +1,12 @@
+{
+    "player_car_index": 0,
+    "rpm": 0,
+    "speed": 0,
+    "gear": 0,
+    "car_position": 0,
+    "pit-limiter": 0,
+    "drs": false,
+    "drs_allowed": false,
+    "flag": 0,
+    "safety_car": 0
+}

@@ -1,5 +1,6 @@
 import socket
 from f1_2020_telemetry.packets import unpack_udp_packet
+from host.utils.data_structure import initialize_data
 
 # UDP setup
 UDP_IP = "127.0.0.1"
@@ -13,19 +14,7 @@ sock.settimeout(1.0)
 # drs mapping
 drs_map = { 0: False, 1: True }
 
-# data packet structure
-data = {
-    "player_car_index": 0,
-    "rpm": 0,
-    "speed": 0,
-    "gear": 0,
-    "car_position": 0,
-    "pit-limiter": 0,
-    "drs": False,
-    "drs_allowed": False,
-    "flag": 0,
-    "safety_car": 0
-}
+data = initialize_data()
 
 try:
     while True:

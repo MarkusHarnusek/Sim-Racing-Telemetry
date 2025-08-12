@@ -9,8 +9,10 @@ def create_json_packet(data, file_path="telemetry_packet.json"):
         # Write the JSON string to a file
         with open(file_path, 'w') as json_file:
             json_file.write(json_data)
+            return json_data
     except Exception as e:
         print(f"Error creating JSON packet: {e}")
+        return None
         
 # Example data object for testing
 if __name__ == "__main__":

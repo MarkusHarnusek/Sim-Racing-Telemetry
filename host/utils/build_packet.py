@@ -13,21 +13,3 @@ def create_json_packet(data, file_path="telemetry_packet.json"):
     except Exception as e:
         print(f"Error creating JSON packet: {e}")
         return None
-        
-# Example data object for testing
-if __name__ == "__main__":
-    example_data = {
-        "player_car_index": 19,
-        "rpm": 10763,
-        "speed": 203,
-        "gear": 5,
-        "car_position": 15,
-        "pit_limiter": 0,
-        "drs": False,
-        "drs_allowed": False,
-        "flag": 3,
-        "safety_car": 0
-    }
-
-    # Create a JSON file from the example data
-    create_json_packet(example_data)

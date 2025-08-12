@@ -47,3 +47,4 @@ build/
 *.old
 *.orig
 *.save
+*.vscode

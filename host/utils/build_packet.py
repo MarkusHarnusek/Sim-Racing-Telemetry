@@ -40,7 +40,7 @@ def build_packet(data):
                 0,
                 0
             ],
-            "rpm-event" : 0
+            "event" : 0
         }
         
         # Check for neutral and reverse gear to change value
@@ -55,6 +55,11 @@ def build_packet(data):
         if data["flag"] == -1:
             return_data["flag"] = 1
             
+        # Send yellow flag event in case of (Virtual) Safety Car
+
+        if data['safety_car'] != 0:
+            return_data["flag"] = 2
+
         # Convert and manage rpm data
         
         mode = config['mode']

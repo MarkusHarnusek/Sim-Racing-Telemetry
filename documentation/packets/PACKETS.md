@@ -28,7 +28,8 @@ Below is an example of a typical packet:
         0,
         0,
         0
-    ]
+    ],
+    "event": 0
 }
 ```
 
@@ -44,7 +45,9 @@ Below is an example of a typical packet:
   - `2`: Blue Flag - A faster car is approaching; the driver must let them pass.
   - `3`: Yellow Flag - Caution due to an incident on the track; drivers must slow down and avoid overtaking.
   - `4`: Red Flag - The session has been stopped due to severe conditions or incidents.
-
 - **rpm-values**: An array representing RPM values for different segments, useful for visualizing engine performance or other metrics.
+- **event**: This property tells the client about game events, some values are:
+  - `0`: None - No event has happend
+  - `1`: Redline - The RPM value of the vehicle has exceeded the redline value
 
 This structure ensures efficient communication and processing, making it suitable for real-time applications in sim racing telemetry.

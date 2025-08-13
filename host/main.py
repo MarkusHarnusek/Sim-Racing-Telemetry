@@ -13,7 +13,7 @@ def main():
         while True:
             data = f1_2020.run()
             if data:
-                json_body = build_packet.create_json_packet(data)
+                json_body = build_packet.build_packet(data)
                 if json_body:
                     start_time = time.time()
                     send_packet.send_packet(json_body)

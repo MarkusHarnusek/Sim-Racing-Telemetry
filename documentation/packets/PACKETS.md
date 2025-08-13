@@ -14,11 +14,7 @@ Below is an example of a typical packet:
 {
     "id": 1,
     "gear": 2,
-    "flag-values": {
-        "R": 0,
-        "G": 255,
-        "B": 255
-    },
+    "flag": 0,
     "rpm-values": [
         255,
         255,
@@ -39,11 +35,16 @@ Below is an example of a typical packet:
 ### Explanation of Fields
 
 - **id**: A unique identifier for the packet.
-- **gear**: Represents the current gear of the vehicle.
-- **flag-values**: Contains RGB values for flags, where:
-  - `R`: Red component.
-  - `G`: Green component.
-  - `B`: Blue component.
+- **gear**: Represents the current gear of the vehicle. Special values include:
+  - `10`: Neutral gear.
+  - `11`: Reverse gear.
+- **flag**: Represents the race condition or warning status. Possible values include:
+  - `0`: None - No flag is active; normal racing conditions.
+  - `1`: Green Flag - The track is clear, and normal racing conditions apply.
+  - `2`: Blue Flag - A faster car is approaching; the driver must let them pass.
+  - `3`: Yellow Flag - Caution due to an incident on the track; drivers must slow down and avoid overtaking.
+  - `4`: Red Flag - The session has been stopped due to severe conditions or incidents.
+
 - **rpm-values**: An array representing RPM values for different segments, useful for visualizing engine performance or other metrics.
 
 This structure ensures efficient communication and processing, making it suitable for real-time applications in sim racing telemetry.

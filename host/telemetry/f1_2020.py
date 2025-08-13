@@ -50,6 +50,15 @@ def run():
                     data["flag"] = fia_flags[0] if fia_flags else 0
                     data["drs_allowed"] = drs_map.get(packet.drsAllowed, False) if hasattr(packet, 'drsAllowed') and packet.drsAllowed is not None else False
         
+                    print(data) # DEBUG
+        
                     return data # Return the data after processing
         except socket.timeout:
             print("Socket timed out, waiting for data...")
+
+if __name__ == "__main__":
+    try:
+        while True:
+            run()        
+    except KeyboardInterrupt:
+        print("Telemetry data collection stopped.")

@@ -1,0 +1,5 @@
+{
+    "mode": "normal",
+    "min_rpm": 8000,
+    "redline": 11500
+}

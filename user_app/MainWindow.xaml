@@ -5,8 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sim_Racing_Telemetry"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Sim Racing Telemetry" 
+        Background="{DynamicResource Background}"
+        Height="450" 
+        Width="800"
+        MinWidth="650"
+        MinHeight="225">
+    
     <Grid>
 
+        <Viewbox
+            VerticalAlignment="Top"
+            HorizontalAlignment="Center"
+            Margin="250,15,250,0"
+            MaxWidth="400"
+            Stretch="Uniform">
+
+            <TextBlock
+                Text="Sim Racing Telemetry"
+                FontWeight="Medium"
+                FontFamily="{StaticResource Montserrat}"
+                Foreground="{DynamicResource Text}"/>
+        </Viewbox>
     </Grid>
 </Window>

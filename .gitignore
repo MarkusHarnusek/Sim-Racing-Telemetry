@@ -1,55 +1,15 @@
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-*.env
-.env
-venv/
-ENV/
-env/
-venv.bak/
+#General
 
-# Jupyter Notebooks
-.ipynb_checkpoints/
-
-# macOS
-.DS_Store
-
-# Windows
-Thumbs.db
-
-# Logs
-*.log
-
-# Temporary files
-*.tmp
-*.temp
-*.swp
-*.swo
-
-# Test outputs
-coverage/
-*.cover
-*.coverage
-*.lcov
-
-# Build outputs
-dist/
-build/
-*.egg-info/
-
-# Other
-*.sqlite3
-*.db
-*.lock
-*.bak
-*.old
-*.orig
-*.save
-
-# Default
-
+.venv/
 .vscode/
-__pycache__/
+.vs/
+.bin/
+.obj/
 .theia/
+__pycache__/
+
+# C#
+
+*.sln
+AssemblyInfo.cs
+*.csproj.user

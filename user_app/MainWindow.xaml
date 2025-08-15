@@ -7,25 +7,114 @@
         mc:Ignorable="d"
         Title="Sim Racing Telemetry" 
         Background="{DynamicResource Background}"
-        Height="450" 
         Width="800"
+        Height="550" 
         MinWidth="650"
-        MinHeight="225">
-    
+        MinHeight="500">
+
     <Grid>
 
-        <Viewbox
-            VerticalAlignment="Top"
-            HorizontalAlignment="Center"
-            Margin="250,15,250,0"
-            MaxWidth="400"
-            Stretch="Uniform">
+        <Grid
+            x:Name="Grd_Main"
+            Visibility="Collapsed"
+            Margin="50">
 
-            <TextBlock
-                Text="Sim Racing Telemetry"
-                FontWeight="Medium"
-                FontFamily="{StaticResource Montserrat}"
-                Foreground="{DynamicResource Text}"/>
-        </Viewbox>
+            <Viewbox
+                VerticalAlignment="Top"
+                HorizontalAlignment="Center"
+                Margin="250,15,250,0"
+                MaxWidth="400"
+                Stretch="Uniform">
+
+                <TextBlock
+                    Text="Sim Racing Telemetry"
+                    FontWeight="Medium"
+                    FontFamily="{StaticResource Montserrat}"
+                    Foreground="{DynamicResource Text}"/>
+            </Viewbox>
+        </Grid>
+
+        <Grid
+            x:Name="Grd_Setup"
+            Visibility="Visible">
+
+            <Grid.RowDefinitions>
+
+                <RowDefinition
+                    Height="*"/>
+
+                <RowDefinition
+                    MinHeight="30"
+                    MaxHeight="50"/>
+            </Grid.RowDefinitions>
+
+            <Grid
+                Grid.Row="0"
+                Margin="50">
+
+                <Button
+                    x:Name="Btn_Setup_Next"
+                    Style="{StaticResource Font_Size_Up_Button_Style}"
+                    Content="Next"
+                    VerticalAlignment="Bottom"
+                    Margin="225,0,225,0"
+                    FontSize="15"
+                    MinHeight="25"
+                    MaxWidth="300"
+                    MaxHeight="45"/>
+
+                <Grid
+                    x:Name="Grd_Setup0">
+
+                </Grid>
+            </Grid>
+
+            <Grid
+                Margin="50,0"
+                Grid.Row="1">
+
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition
+                        Width="*"/>
+
+                    <ColumnDefinition
+                        Width="*"/>
+
+                    <ColumnDefinition
+                        Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Rectangle
+                    x:Name="Rct_Progress0"
+                    Grid.Column="0"
+                    Margin="2,17.5"
+                    MinHeight="15"
+                    MaxHeight="10"
+                    RadiusX="7.5"
+                    RadiusY="7.5"
+                    Fill="{DynamicResource Foreground}"/>
+
+                <Rectangle
+                    x:Name="Rct_Progress1"
+                    Grid.Column="1"
+                    Margin="2,17.5"
+                    MinHeight="15"
+                    MaxHeight="10"
+                    RadiusX="7.5"
+                    RadiusY="7.5"
+                    Fill="{DynamicResource Foreground}"/>
+
+                <Rectangle
+                    x:Name="Rct_Progress2"
+                    Grid.Column="2"
+                    Margin="2,17.5"
+                    MinHeight="15"
+                    MaxHeight="10"
+                    RadiusX="7.5"
+                    RadiusY="7.5"
+                    Fill="{DynamicResource Foreground}"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

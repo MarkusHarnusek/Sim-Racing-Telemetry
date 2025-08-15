@@ -54,67 +54,44 @@
 
                 <Setter.Value>
 
-                    <ControlTemplate
+                    <ControlTemplate 
                         TargetType="Button">
 
                         <Border
                             x:Name="border"
                             CornerRadius="5"
-                            Background="{TemplateBinding Background}"
                             BorderThickness="{TemplateBinding BorderThickness}">
-
+                            
+                            <Border.Background>
+                                
+                                <SolidColorBrush 
+                                    x:Name="AnimatedBrush" 
+                                    Color="{Binding Background.Color, RelativeSource={RelativeSource TemplatedParent}}"/>
+                            </Border.Background>
+                            
                             <ContentPresenter
                                 x:Name="contentPresenter"
                                 HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                RenderTransformOrigin="0.5,0.5">
-
-                                <ContentPresenter.RenderTransform>
-
-                                    <ScaleTransform
-                                        x:Name="scaleTransform"
-                                        ScaleX="1"
-                                        ScaleY="1"/>
-                                </ContentPresenter.RenderTransform>
-                            </ContentPresenter>
+                                VerticalAlignment="Center"/>
                         </Border>
 
                         <ControlTemplate.Triggers>
 
-                            <Trigger
-                                Property="IsMouseOver"
+                            <Trigger 
+                                Property="IsMouseOver" 
                                 Value="True">
 
                                 <Trigger.EnterActions>
 
                                     <BeginStoryboard>
 
-                                        <Storyboard
-                                            TargetName="scaleTransform">
+                                        <Storyboard>
 
-                                            <DoubleAnimation
-                                                Storyboard.TargetProperty="ScaleX"
-                                                To="1.1"
-                                                Duration="0:0:0.2">
-
-                                                <DoubleAnimation.EasingFunction>
-
-                                                    <CubicEase
-                                                        EasingMode="EaseOut"/>
-                                                </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
-
-                                            <DoubleAnimation
-                                                Storyboard.TargetProperty="ScaleY"
-                                                To="1.1"
-                                                Duration="0:0:0.2">
-
-                                                <DoubleAnimation.EasingFunction>
-
-                                                    <CubicEase
-                                                    EasingMode="EaseOut"/>
-                                                </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
+                                            <ColorAnimation
+                                                Storyboard.TargetName="AnimatedBrush"
+                                                Storyboard.TargetProperty="Color"
+                                                To="#305CDE"
+                                                Duration="0:0:0.2"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </Trigger.EnterActions>
@@ -123,32 +100,13 @@
 
                                     <BeginStoryboard>
 
-                                        <Storyboard
-                                            TargetName="scaleTransform">
+                                        <Storyboard>
 
-                                            <DoubleAnimation
-                                                Storyboard.TargetProperty="ScaleX"
-                                                To="1"
-                                                Duration="0:0:0.2">
-
-                                                <DoubleAnimation.EasingFunction>
-
-                                                    <CubicEase
-                                                        EasingMode="EaseOut"/>
-                                                </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
-
-                                            <DoubleAnimation
-                                                Storyboard.TargetProperty="ScaleY"
-                                                To="1"
-                                                Duration="0:0:0.2">
-
-                                                <DoubleAnimation.EasingFunction>
-
-                                                    <CubicEase
-                                                        EasingMode="EaseOut"/>
-                                                </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
+                                            <ColorAnimation
+                                                Storyboard.TargetName="AnimatedBrush"
+                                                Storyboard.TargetProperty="Color"
+                                                To="#1E90FF"
+                                                Duration="0:0:0.2"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </Trigger.ExitActions>

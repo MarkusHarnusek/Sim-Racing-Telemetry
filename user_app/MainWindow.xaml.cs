@@ -1,13 +1,4 @@
-﻿using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace Sim_Racing_Telemetry
 {
@@ -19,8 +10,6 @@ namespace Sim_Racing_Telemetry
         public MainWindow()
         {
             InitializeComponent();
-            Setup setup = new Setup();
-            setup.Show();
         }
     }
 }

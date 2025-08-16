@@ -15,11 +15,15 @@
 
         <SolidColorBrush
             x:Key="Foreground"
-            Color="#305CDE"/>
+            Color="#1E90FF"/> 
 
         <SolidColorBrush
             x:Key="Accent"
-            Color="#1E90FF"/>
+            Color="#305CDE"/>
+
+        <SolidColorBrush
+            x:Key="Greyed"
+            Color="#787780"/>
 
         <SolidColorBrush
             x:Key="Text"
@@ -31,7 +35,7 @@
 
             <Setter
                 Property="Background"
-                Value="{DynamicResource Accent}"/>
+                Value="{DynamicResource Foreground}"/>
 
             <Setter
                 Property="Foreground"
@@ -90,7 +94,7 @@
                                             <ColorAnimation
                                                 Storyboard.TargetName="AnimatedBrush"
                                                 Storyboard.TargetProperty="Color"
-                                                To="#305CDE"
+                                                To="#1E90FF"
                                                 Duration="0:0:0.2"/>
                                         </Storyboard>
                                     </BeginStoryboard>
@@ -105,7 +109,7 @@
                                             <ColorAnimation
                                                 Storyboard.TargetName="AnimatedBrush"
                                                 Storyboard.TargetProperty="Color"
-                                                To="#1E90FF"
+                                                To="#305CDE"
                                                 Duration="0:0:0.2"/>
                                         </Storyboard>
                                     </BeginStoryboard>

@@ -61,11 +61,46 @@
                     FontSize="15"
                     MinHeight="25"
                     MaxWidth="300"
-                    MaxHeight="45"/>
+                    MaxHeight="45" Click="Btn_Setup_Next_Click"/>
 
                 <Grid
-                    x:Name="Grd_Setup0">
+                    x:Name="Grd_Setup_DeviceType"
+                    Visibility="Collapsed"
+                    Margin="0,0,0,35">
 
+                    <TextBlock
+                        Text="Device"
+                        Foreground="White"/>
+                </Grid>
+
+                <Grid
+                    x:Name="Grd_Setup_DeviceIP"
+                    Visibility="Collapsed"
+                    Margin="0,0,0,35">
+
+                    <TextBlock
+                        Text="IP"
+                        Foreground="White"/>
+                </Grid>
+
+                <Grid
+                    x:Name="Grd_Setup_Customization"
+                    Visibility="Collapsed"
+                    Margin="0,0,0,35">
+
+                    <TextBlock
+                        Text="Customization"
+                        Foreground="White"/>
+                </Grid>
+
+                <Grid
+                    x:Name="Grd_Setup_Finished"
+                    Visibility="Collapsed"
+                    Margin="0,0,0,35">
+
+                    <TextBlock
+                        Text="Finished"
+                        Foreground="White"/>
                 </Grid>
             </Grid>
 
@@ -83,10 +118,13 @@
 
                     <ColumnDefinition
                         Width="*"/>
+
+                    <ColumnDefinition
+                        Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <Rectangle
-                    x:Name="Rct_Progress0"
+                    x:Name="Rct_Setup_Progress0"
                     Grid.Column="0"
                     Margin="2,17.5"
                     MinHeight="15"
@@ -96,7 +134,7 @@
                     Fill="{DynamicResource Foreground}"/>
 
                 <Rectangle
-                    x:Name="Rct_Progress1"
+                    x:Name="Rct_Setup_Progress1"
                     Grid.Column="1"
                     Margin="2,17.5"
                     MinHeight="15"
@@ -106,8 +144,18 @@
                     Fill="{DynamicResource Foreground}"/>
 
                 <Rectangle
-                    x:Name="Rct_Progress2"
+                    x:Name="Rct_Setup_Progress2"
                     Grid.Column="2"
+                    Margin="2,17.5"
+                    MinHeight="15"
+                    MaxHeight="10"
+                    RadiusX="7.5"
+                    RadiusY="7.5"
+                    Fill="{DynamicResource Foreground}"/>
+
+                <Rectangle
+                    x:Name="Rct_Setup_Progress3"
+                    Grid.Column="3"
                     Margin="2,17.5"
                     MinHeight="15"
                     MaxHeight="10"

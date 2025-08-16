@@ -15,6 +15,11 @@ namespace Sim_Racing_Telemetry
         /// </summary> 
         private static List<Grid> mainGrids = new List<Grid>();
 
+        /// <summary>
+        /// Used to store all the buttons in the side bar
+        /// </summary>
+        private static List<Button> menuButtons = new List<Button>();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -25,6 +30,8 @@ namespace Sim_Racing_Telemetry
                 Grd_Main,
                 Grd_Setup
             };
+
+            // TODO Add side bar buttons
         }
 
 
@@ -60,7 +67,7 @@ namespace Sim_Racing_Telemetry
         /// <summary>
         /// The total number of setup steps.
         /// </summary>
-        private const int totalSetupSteps = 3;
+        private const int totalSetupSteps = 4;
 
         /// <summary>
         /// Called to start the setup process.
@@ -115,19 +122,25 @@ namespace Sim_Racing_Telemetry
                 currentSetupStep = 0;
             }
 
-            if (currentSetupStep == totalSetupSteps + 1)
+            if (currentSetupStep == totalSetupSteps )
             {
                 ResetGridVisibility(this);
+                ResetSetupGridVisibility();
                 Grd_Setup.Visibility = Visibility.Visible;
                 currentSetupStep = -1;
 
                 // TODO Actually save the setup data here
             }
-            else if (currentSetupStep <= totalSetupSteps)
+            else if (currentSetupStep < totalSetupSteps)
             {
                 ResetSetupGridVisibility();
                 setupGrids[currentSetupStep].Visibility = Visibility.Visible;
-                progressBars[currentSetupStep].Fill = (SolidColorBrush)Application.Current.Resources["Foreground"];
+
+                if (currentSetupStep != 0)
+                {
+                    progressBars[currentSetupStep - 1].Fill = (SolidColorBrush)Application.Current.Resources["Foreground"];
+                }
+
                 currentSetupStep++;
             }
         }

@@ -9,21 +9,32 @@
         Background="{DynamicResource Background}"
         Width="800"
         Height="550" 
-        MinWidth="650"
+        MinWidth="800"
         MinHeight="500">
 
     <Grid>
 
         <Grid
             x:Name="Grd_Main"
-            Visibility="Collapsed"
-            Margin="50">
+            Visibility="Visible"
+            Margin="50,25,50,25">
+
+            <Grid.RowDefinitions>
+
+                <RowDefinition
+                    Height="*"
+                    MaxHeight="75"/>
+
+                <RowDefinition
+                    Height="5*"/>
+            </Grid.RowDefinitions>
 
             <Viewbox
-                VerticalAlignment="Top"
+                Grid.Row="0"
+                VerticalAlignment="Center"
                 HorizontalAlignment="Center"
                 Margin="250,15,250,0"
-                MaxWidth="400"
+                MaxWidth="350"
                 Stretch="Uniform">
 
                 <TextBlock
@@ -32,11 +43,49 @@
                     FontFamily="{StaticResource Montserrat}"
                     Foreground="{DynamicResource Text}"/>
             </Viewbox>
+
+            <Grid
+                Grid.Row="1"
+                Margin="0,20,0,0">
+
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition
+                        Width="*"
+                        MaxWidth="300"/>
+
+                    <ColumnDefinition
+                        Width="3*"/>
+                </Grid.ColumnDefinitions>
+
+                <Rectangle
+                    Grid.Column="0"
+                    Fill="{DynamicResource DarkGrey}"/>
+
+                <Grid
+                    Margin="10">
+
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition
+                            Height="*"/>
+
+                        <RowDefinition
+                            Height="*"/>
+
+                        <RowDefinition
+                            Height="*"/>
+
+                        <RowDefinition
+                            Height="5*"/>
+                    </Grid.RowDefinitions>
+                </Grid>
+            </Grid>
         </Grid>
 
         <Grid
             x:Name="Grd_Setup"
-            Visibility="Visible">
+            Visibility="Collapsed">
 
             <Grid.RowDefinitions>
 

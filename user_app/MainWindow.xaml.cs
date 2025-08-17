@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.ComponentModel;
+using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -92,8 +93,6 @@ namespace Sim_Racing_Telemetry
         /// <param name="instance">The instance of the MainWindow.</param>
         private static void SetupTrigger(MainWindow instance)
         {
-            ResetGridVisibility(instance);
-            instance.Grd_Setup.Visibility = Visibility.Visible;
 
             // Add the setup grids to the list
             setupGrids = new List<Grid>
@@ -116,7 +115,7 @@ namespace Sim_Racing_Telemetry
             // Grey out all of the bars
             foreach (var bar in progressBars)
             {
-                bar.Fill = (SolidColorBrush)Application.Current.Resources["Greyed"];
+                bar.Fill = (SolidColorBrush)Application.Current.Resources["Background"];
             }
         }
 
@@ -139,26 +138,63 @@ namespace Sim_Racing_Telemetry
                 currentSetupStep = 0;
             }
 
-            if (currentSetupStep == totalSetupSteps )
+            if (currentSetupStep > totalSetupSteps)
             {
                 // Handle setup process completion
                 ResetGridVisibility(this);
                 ResetSetupGridVisibility();
                 Grd_Setup.Visibility = Visibility.Visible;
                 currentSetupStep = -1;
+                Btn_Setup_Next.Content = "Start"; // Reset button text to "Start Setup"
+
+                // Reset all progress bars to grey
+                foreach (var bar in progressBars)
+                {
+                    bar.Fill = (SolidColorBrush)Application.Current.Resources["Background"];
+                }
 
                 //TODO Actually save the setup data here
             }
-            else if (currentSetupStep < totalSetupSteps)
+            else if (currentSetupStep <= totalSetupSteps)
             {
                 // Show the next step
-                ResetSetupGridVisibility();
-                setupGrids[currentSetupStep].Visibility = Visibility.Visible;
+                if (currentSetupStep != totalSetupSteps)
+                {
+                    ResetSetupGridVisibility();
+                    setupGrids[currentSetupStep].Visibility = Visibility.Visible;
+                    Btn_Setup_Next.Content = "Next"; // Reset button text to "Next"
+                }
+                else
+                {
+                    Btn_Setup_Next.Content = "Finish"; // Change button text to "Finish" on the last step
+                }
 
                 // Set the last step's progress bar part to indicate the step's completion
                 if (currentSetupStep != 0)
                 {
-                    progressBars[currentSetupStep - 1].Fill = (SolidColorBrush)Application.Current.Resources["Foreground"];
+                    var to = Application.Current.Resources["Accent"] as SolidColorBrush;
+                    if (to == null)
+                    {
+                        return;
+                    }
+
+                    var from = progressBars[currentSetupStep - 1].Fill as SolidColorBrush;
+                    if (from == null || from.Color == to.Color)
+                    {
+                        return;
+                    }
+
+                    // Assign a new brush instance to avoid animating a shared resource
+                    var newBrush = new SolidColorBrush(from.Color);
+                    progressBars[currentSetupStep - 1].Fill = newBrush;
+
+                    var animation = new ColorAnimation
+                    {
+                        To = to.Color,
+                        Duration = TimeSpan.FromSeconds(0.25),
+                        EasingFunction = new CubicEase { EasingMode = EasingMode.EaseInOut }
+                    };
+                    newBrush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
                 }
 
                 currentSetupStep++;
@@ -243,6 +279,8 @@ namespace Sim_Racing_Telemetry
             ResetGridVisibility(this);
             currentMenu = 1;
             MenuButtonColorSet(this);
+            SetupTrigger(this);
+            Btn_Setup_Next.Content = "Start";
             Grd_Setup.Visibility = Visibility.Visible;
         }
 

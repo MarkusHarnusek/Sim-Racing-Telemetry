@@ -112,11 +112,25 @@ namespace Sim_Racing_Telemetry
                 instance.Rct_Setup_Progress3
             };
 
-            // Grey out all of the bars
+            // Grey out all of the bars and show them
             foreach (var bar in progressBars)
             {
                 bar.Fill = (SolidColorBrush)Application.Current.Resources["Background"];
+                bar.Visibility = Visibility.Visible;
             }
+
+            instance.Btn_Setup_Next.Visibility = Visibility.Visible; 
+            instance.Grd_Setup_Progress.Visibility = Visibility.Visible; // Show the progress grid
+            instance.Btn_Setup_Next.Visibility = Visibility.Visible;
+            currentSetupStep = 0; // Reset the current setup step to 0
+        }
+
+        private static void CloseSetup(MainWindow instance)
+        {
+            SetupTrigger(instance); // Reset the setup trigger to ensure all elements are initialized
+            ResetSetupGridVisibility();
+            instance.Grd_Setup_Progress.Visibility = Visibility.Collapsed; // Hide the progress grid
+            instance.Btn_Setup_Next.Visibility = Visibility.Collapsed; // Hide the next button
         }
 
         /// <summary>
@@ -145,13 +159,14 @@ namespace Sim_Racing_Telemetry
                 ResetSetupGridVisibility();
                 Grd_Setup.Visibility = Visibility.Visible;
                 currentSetupStep = -1;
-                Btn_Setup_Next.Content = "Start"; // Reset button text to "Start Setup"
 
                 // Reset all progress bars to grey
                 foreach (var bar in progressBars)
                 {
                     bar.Fill = (SolidColorBrush)Application.Current.Resources["Background"];
                 }
+
+                CloseSetup(this); // Close the setup and reset the state
 
                 //TODO Actually save the setup data here
             }
@@ -280,7 +295,6 @@ namespace Sim_Racing_Telemetry
             currentMenu = 1;
             MenuButtonColorSet(this);
             SetupTrigger(this);
-            Btn_Setup_Next.Content = "Start";
             Grd_Setup.Visibility = Visibility.Visible;
         }
 

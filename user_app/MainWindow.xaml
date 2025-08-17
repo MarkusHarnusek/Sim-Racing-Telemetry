@@ -202,6 +202,7 @@
                     </Grid>
 
                     <Grid
+                        x:Name="Grd_Setup_Progress"
                         Margin="25,0"
                         Grid.Row="1">
 

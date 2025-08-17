@@ -11,35 +11,35 @@
 
         <SolidColorBrush
             x:Key="Background"
-            Color="#030001"/>
-
-        <SolidColorBrush
-            x:Key="Foreground"
-            Color="#1E90FF"/> 
+            Color="#232323"/>
 
         <SolidColorBrush
             x:Key="Accent"
-            Color="#305CDE"/>
+            Color="#1E90FF"/> 
 
         <SolidColorBrush
-            x:Key="Greyed"
+            x:Key="Border"
             Color="#787780"/>
 
         <SolidColorBrush
-            x:Key="DarkGrey"
-            Color="#232323"/>
+            x:Key="Highlight"
+            Color="#B9BAB8"/>
+
+        <SolidColorBrush
+            x:Key="Detail"
+            Color="#565656"/>
 
         <SolidColorBrush
             x:Key="Text"
             Color="#F4FDFF"/>
 
         <Style
-            x:Key="Font_Size_Up_Button_Style"
+            x:Key="Standard_Button_Style"
             TargetType="Button">
 
             <Setter
                 Property="Background"
-                Value="{DynamicResource Foreground}"/>
+                Value="{DynamicResource Background}"/>
 
             <Setter
                 Property="Foreground"
@@ -47,7 +47,11 @@
 
             <Setter
                 Property="BorderThickness"
-                Value="0"/>
+                Value="1"/>
+
+            <Setter
+                Property="BorderBrush"
+                Value="{DynamicResource Border}"/>
 
             <Setter
                 Property="FontFamily"
@@ -68,15 +72,9 @@
                         <Border
                             x:Name="border"
                             CornerRadius="5"
+                            BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
-                            
-                            <Border.Background>
-                                
-                                <SolidColorBrush 
-                                    x:Name="AnimatedBrush" 
-                                    Color="{Binding Background.Color, RelativeSource={RelativeSource TemplatedParent}}"/>
-                            </Border.Background>
-                            
+
                             <ContentPresenter
                                 x:Name="contentPresenter"
                                 HorizontalAlignment="Center"
@@ -96,9 +94,9 @@
                                         <Storyboard>
 
                                             <ColorAnimation
-                                                Storyboard.TargetName="AnimatedBrush"
-                                                Storyboard.TargetProperty="Color"
-                                                To="#1E90FF"
+                                                Storyboard.TargetName="border"
+                                                Storyboard.TargetProperty="BorderBrush.Color"
+                                                To="#B9BAB8"
                                                 Duration="0:0:0.2"/>
                                         </Storyboard>
                                     </BeginStoryboard>
@@ -111,113 +109,15 @@
                                         <Storyboard>
 
                                             <ColorAnimation
-                                                Storyboard.TargetName="AnimatedBrush"
-                                                Storyboard.TargetProperty="Color"
-                                                To="#305CDE"
+                                                Storyboard.TargetName="border"
+                                                Storyboard.TargetProperty="BorderBrush.Color"
+                                                To="#787780"
                                                 Duration="0:0:0.2"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </Trigger.ExitActions>
                             </Trigger>
                         </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style
-            x:Key="Heigth_Fade_Button_Style" 
-            TargetType="Button">
-
-            <Setter
-                Property="Foreground" 
-                Value="{DynamicResource Text}"/>
-
-            <Setter 
-                Property="FontFamily"
-                Value="{StaticResource Montserrat}"/>
-
-            <Setter
-                Property="FontSize"
-                Value="20"/>
-
-            <Setter
-                Property="VerticalAlignment"
-                Value="Center"/>
-
-            <Setter
-                Property="Padding"
-                Value="5"/>
-
-            <Setter 
-                Property="Template">
-
-                <Setter.Value>
-
-                    <ControlTemplate 
-                        TargetType="Button">
-
-                        <Border 
-                            x:Name="templateBorder"
-                            Background="{DynamicResource Foreground}"
-                            BorderThickness="0"
-                            Height="30"
-                            CornerRadius="7.5"
-                            VerticalAlignment="Center">
-
-                            <Border.Triggers>
-
-                                <EventTrigger
-                                    RoutedEvent="MouseEnter">
-
-                                    <BeginStoryboard>
-
-                                        <Storyboard>
-
-                                            <DoubleAnimation 
-                                                Storyboard.TargetProperty="Height"
-                                                By="3"
-                                                Duration="0:0:0.2">
-
-                                                <DoubleAnimation.EasingFunction>
-
-                                                    <CubicEase 
-                                                        EasingMode="EaseOut"/>
-                                                </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </EventTrigger>
-
-                                <EventTrigger 
-                                    RoutedEvent="MouseLeave">
-
-                                    <BeginStoryboard>
-
-                                        <Storyboard>
-
-                                            <DoubleAnimation 
-                                                Storyboard.TargetProperty="Height"
-                                                By="-3"
-                                                Duration="0:0:0.2">
-
-                                                <DoubleAnimation.EasingFunction>
-
-                                                    <CubicEase
-                                                        EasingMode="EaseOut"/>
-                                                </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </EventTrigger>
-                            </Border.Triggers>
-
-                            <ContentPresenter 
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                ContentSource="Content"
-                                RecognizesAccessKey="True"/>
-                        </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>

@@ -17,7 +17,7 @@
         <Grid
             x:Name="Grd_Main"
             Visibility="Visible"
-            Margin="50,25,50,25">
+            Margin="25,0,25,25">
 
             <Grid.RowDefinitions>
 
@@ -26,14 +26,14 @@
                     MaxHeight="75"/>
 
                 <RowDefinition
-                    Height="5*"/>
+                    Height="9*"/>
             </Grid.RowDefinitions>
 
             <Viewbox
                 Grid.Row="0"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
-                Margin="250,15,250,0"
+                Margin="225,15,225,0"
                 MaxWidth="350"
                 Stretch="Uniform">
 
@@ -46,7 +46,7 @@
 
             <Grid
                 Grid.Row="1"
-                Margin="0,20,0,0">
+                Margin="0,10,0,0">
 
                 <Grid.ColumnDefinitions>
 
@@ -58,12 +58,14 @@
                         Width="3*"/>
                 </Grid.ColumnDefinitions>
 
-                <Rectangle
+                <Border
                     Grid.Column="0"
-                    Fill="{DynamicResource DarkGrey}"/>
+                    CornerRadius="10"
+                    BorderThickness="1"
+                    BorderBrush="{DynamicResource Border}"/>
 
                 <Grid
-                    Margin="10">
+                    Margin="5">
 
                     <Grid.RowDefinitions>
 
@@ -77,140 +79,235 @@
                             Height="*"/>
 
                         <RowDefinition
-                            Height="5*"/>
+                            Height="8*"/>
                     </Grid.RowDefinitions>
-                </Grid>
-            </Grid>
-        </Grid>
 
-        <Grid
-            x:Name="Grd_Setup"
-            Visibility="Collapsed">
+                    <Button
+                        Name="Btn_Home"
+                        Click="Btn_Home_Click"
+                        Grid.Row="0"
+                        Margin="0,2.5"
+                        FontSize="18"
+                        Content="Home"
+                        Style="{StaticResource Standard_Button_Style}"/>
 
-            <Grid.RowDefinitions>
+                    <Button
+                        Name="Btn_Setup"
+                        Click="Btn_Setup_Click"
+                        Grid.Row="1"
+                        Margin="0,2.5"
+                        FontSize="18"
+                        Content="Devices"
+                        Style="{StaticResource Standard_Button_Style}"/>
 
-                <RowDefinition
-                    Height="*"/>
-
-                <RowDefinition
-                    MinHeight="30"
-                    MaxHeight="50"/>
-            </Grid.RowDefinitions>
-
-            <Grid
-                Grid.Row="0"
-                Margin="50">
-
-                <Button
-                    x:Name="Btn_Setup_Next"
-                    Style="{StaticResource Font_Size_Up_Button_Style}"
-                    Content="Next"
-                    VerticalAlignment="Bottom"
-                    Margin="225,0,225,0"
-                    FontSize="15"
-                    MinHeight="25"
-                    MaxWidth="300"
-                    MaxHeight="45" Click="Btn_Setup_Next_Click"/>
-
-                <Grid
-                    x:Name="Grd_Setup_DeviceType"
-                    Visibility="Collapsed"
-                    Margin="0,0,0,35">
-
-                    <TextBlock
-                        Text="Device"
-                        Foreground="White"/>
+                    <Button
+                        Name="Btn_Telemetry"
+                        Click="Btn_Telemetry_Click"
+                        Grid.Row="2"
+                        Margin="0,2.5"
+                        FontSize="18"
+                        Content="Games"
+                        Style="{StaticResource Standard_Button_Style}"/>
                 </Grid>
 
                 <Grid
-                    x:Name="Grd_Setup_DeviceIP"
-                    Visibility="Collapsed"
-                    Margin="0,0,0,35">
-
-                    <TextBlock
-                        Text="IP"
-                        Foreground="White"/>
-                </Grid>
-
-                <Grid
-                    x:Name="Grd_Setup_Customization"
-                    Visibility="Collapsed"
-                    Margin="0,0,0,35">
-
-                    <TextBlock
-                        Text="Customization"
-                        Foreground="White"/>
-                </Grid>
-
-                <Grid
-                    x:Name="Grd_Setup_Finished"
-                    Visibility="Collapsed"
-                    Margin="0,0,0,35">
-
-                    <TextBlock
-                        Text="Finished"
-                        Foreground="White"/>
-                </Grid>
-            </Grid>
-
-            <Grid
-                Margin="50,0"
-                Grid.Row="1">
-
-                <Grid.ColumnDefinitions>
-
-                    <ColumnDefinition
-                        Width="*"/>
-
-                    <ColumnDefinition
-                        Width="*"/>
-
-                    <ColumnDefinition
-                        Width="*"/>
-
-                    <ColumnDefinition
-                        Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <Rectangle
-                    x:Name="Rct_Setup_Progress0"
-                    Grid.Column="0"
-                    Margin="2,17.5"
-                    MinHeight="15"
-                    MaxHeight="10"
-                    RadiusX="7.5"
-                    RadiusY="7.5"
-                    Fill="{DynamicResource Foreground}"/>
-
-                <Rectangle
-                    x:Name="Rct_Setup_Progress1"
+                    x:Name="Grd_Home"
                     Grid.Column="1"
-                    Margin="2,17.5"
-                    MinHeight="15"
-                    MaxHeight="10"
-                    RadiusX="7.5"
-                    RadiusY="7.5"
-                    Fill="{DynamicResource Foreground}"/>
+                    Margin="10,0,0,0"
+                    Visibility="Collapsed">
 
-                <Rectangle
-                    x:Name="Rct_Setup_Progress2"
-                    Grid.Column="2"
-                    Margin="2,17.5"
-                    MinHeight="15"
-                    MaxHeight="10"
-                    RadiusX="7.5"
-                    RadiusY="7.5"
-                    Fill="{DynamicResource Foreground}"/>
+                    <Border
+                        BorderBrush="{DynamicResource Border}"
+                        BorderThickness="1"
+                        CornerRadius="10"/>
+                </Grid>
 
-                <Rectangle
-                    x:Name="Rct_Setup_Progress3"
-                    Grid.Column="3"
-                    Margin="2,17.5"
-                    MinHeight="15"
-                    MaxHeight="10"
-                    RadiusX="7.5"
-                    RadiusY="7.5"
-                    Fill="{DynamicResource Foreground}"/>
+                <Grid
+                    x:Name="Grd_Setup"
+                    Grid.Column="1"
+                    Margin="10,0,0,0"
+                    Visibility="Visible">
+
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition
+                            Height="*"/>
+
+                        <RowDefinition
+                            MinHeight="30"
+                            MaxHeight="50"/>
+                    </Grid.RowDefinitions>
+
+                    <Border
+                        BorderBrush="{DynamicResource Border}"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Grid.RowSpan="2"/>
+
+                    <Grid
+                        Grid.Row="0"
+                        Margin="25">
+
+                        <Button
+                            x:Name="Btn_Setup_Next"
+                            Click="Btn_Setup_Next_Click"
+                            Style="{StaticResource Standard_Button_Style}"
+                            Content="Next"
+                            VerticalAlignment="Bottom"
+                            Margin="200,0,200,0"
+                            FontSize="15"
+                            MinHeight="25"
+                            MaxWidth="300"
+                            MaxHeight="45"/>
+
+                        <Grid
+                            x:Name="Grd_Setup_DeviceType"
+                            Visibility="Collapsed"
+                            Margin="0,0,0,35">
+
+                            <TextBlock
+                                Text="Device"
+                                Foreground="White"/>
+                        </Grid>
+
+                        <Grid
+                            x:Name="Grd_Setup_DeviceIP"
+                            Visibility="Collapsed"
+                            Margin="0,0,0,35">
+
+                            <TextBlock
+                                Text="IP"
+                                Foreground="White"/>
+                        </Grid>
+
+                        <Grid
+                            x:Name="Grd_Setup_Customization"
+                            Visibility="Collapsed"
+                            Margin="0,0,0,35">
+
+                            <TextBlock
+                                Text="Customization"
+                                Foreground="White"/>
+                        </Grid>
+
+                        <Grid
+                            x:Name="Grd_Setup_Finished"
+                            Visibility="Collapsed"
+                            Margin="0,0,0,35">
+
+                            <TextBlock
+                                Text="Finished"
+                                Foreground="White"/>
+                        </Grid>
+                    </Grid>
+
+                    <Grid
+                        Margin="25,0"
+                        Grid.Row="1">
+
+                        <Grid.ColumnDefinitions>
+
+                            <ColumnDefinition
+                                Width="*"/>
+
+                            <ColumnDefinition
+                                Width="*"/>
+
+                            <ColumnDefinition
+                                Width="*"/>
+
+                            <ColumnDefinition
+                                Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid
+                            Grid.Column="0"
+                            Margin="2,17.5"
+                            MinHeight="10"
+                            MaxHeight="15">
+
+                            <Border
+                                CornerRadius="5"
+                                BorderBrush="{DynamicResource Border}"
+                                BorderThickness="1"
+                                Panel.ZIndex="1"/>
+
+                            <Rectangle
+                                x:Name="Rct_Setup_Progress0"
+                                RadiusX="5"
+                                RadiusY="5"
+                                Margin="0.5"
+                                Fill="{DynamicResource Accent}"/>
+                        </Grid>
+
+                        <Grid
+                            Grid.Column="1"
+                            Margin="2,17.5"
+                            MinHeight="10"
+                            MaxHeight="15">
+
+                            <Border
+                                CornerRadius="5"
+                                BorderBrush="{DynamicResource Border}"
+                                BorderThickness="1"
+                                Panel.ZIndex="1"/>
+
+                            <Rectangle
+                                x:Name="Rct_Setup_Progress1"
+                                RadiusX="5"
+                                RadiusY="5"
+                                Margin="0.5"
+                                Fill="{DynamicResource Accent}"/>
+                        </Grid>
+
+                        <Grid
+                            Grid.Column="2"
+                            Margin="2,17.5"
+                            MinHeight="10"
+                            MaxHeight="15">
+
+                            <Border
+                                CornerRadius="5"
+                                BorderBrush="{DynamicResource Border}"
+                                BorderThickness="1"
+                                Panel.ZIndex="1"/>
+
+                            <Rectangle
+                                x:Name="Rct_Setup_Progress2"
+                                RadiusX="5"
+                                RadiusY="5"
+                                Margin="0.5"
+                                Fill="{DynamicResource Accent}"/>
+                        </Grid>
+
+                        <Grid
+                            Grid.Column="3"
+                            Margin="2,17.5"
+                            MinHeight="10"
+                            MaxHeight="15">
+
+                            <Border
+                                CornerRadius="5"
+                                BorderBrush="{DynamicResource Border}"
+                                BorderThickness="1"
+                                Panel.ZIndex="1"/>
+
+                            <Rectangle
+                                x:Name="Rct_Setup_Progress3"
+                                RadiusX="5"
+                                RadiusY="5"
+                                Margin="0.5"
+                                Fill="{DynamicResource Accent}"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+                <Grid
+                    x:Name="Grd_Telemetry"
+                    Visibility="Collapsed"
+                    Grid.Column="1">
+
+                </Grid>
             </Grid>
         </Grid>
     </Grid>

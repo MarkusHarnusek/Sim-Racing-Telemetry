@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 
 namespace Sim_Racing_Telemetry
 {
@@ -10,6 +11,11 @@ namespace Sim_Racing_Telemetry
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// The currently open menu
+        /// </summary>
+        private static int currentMenu = 0;
+
         /// <summary>
         /// Used to store all the main grids
         /// </summary> 
@@ -24,14 +30,25 @@ namespace Sim_Racing_Telemetry
         {
             InitializeComponent();
 
-            // Fill in all the grids
+            // Populate mainGrids
             mainGrids = new List<Grid>
             {
-                Grd_Main,
-                Grd_Setup
+                Grd_Home,
+                Grd_Setup,
+                Grd_Telemetry
             };
 
-            // TODO Add side bar buttons
+            // Populate menuButton
+            menuButtons = new List<Button>
+            {
+                Btn_Home,
+                Btn_Setup,
+                Btn_Telemetry
+            };
+
+            // Open the main menu on init
+            ResetGridVisibility(this);
+            Grd_Main.Visibility = Visibility.Visible;
         }
 
 
@@ -124,18 +141,21 @@ namespace Sim_Racing_Telemetry
 
             if (currentSetupStep == totalSetupSteps )
             {
+                // Handle setup process completion
                 ResetGridVisibility(this);
                 ResetSetupGridVisibility();
                 Grd_Setup.Visibility = Visibility.Visible;
                 currentSetupStep = -1;
 
-                // TODO Actually save the setup data here
+                //TODO Actually save the setup data here
             }
             else if (currentSetupStep < totalSetupSteps)
             {
+                // Show the next step
                 ResetSetupGridVisibility();
                 setupGrids[currentSetupStep].Visibility = Visibility.Visible;
 
+                // Set the last step's progress bar part to indicate the step's completion
                 if (currentSetupStep != 0)
                 {
                     progressBars[currentSetupStep - 1].Fill = (SolidColorBrush)Application.Current.Resources["Foreground"];
@@ -147,5 +167,93 @@ namespace Sim_Racing_Telemetry
 
         #endregion
 
+        #region Side Bar Buttons
+
+        /// <summary>
+        /// Set the current selected menu's button to a different color to indicate the selection
+        /// </summary>
+        /// <param name="instance">The instance of MainWindow</param>
+        private static void MenuButtonColorSet(MainWindow instance)
+        {
+            // Reset former menu button color
+            foreach (var button in menuButtons)
+            {
+                var textBrush = Application.Current.Resources["Text"] as SolidColorBrush;
+                if (textBrush == null)
+                {
+                    continue;
+                }
+
+                var currentBrush = button.Foreground as SolidColorBrush;
+                if (currentBrush == null || currentBrush.Color == textBrush.Color)
+                {
+                    continue;
+                }
+
+                // Assign a new brush instance to avoid animating a shared resource
+                var newBrush = new SolidColorBrush(currentBrush.Color);
+                button.Foreground = newBrush;
+
+                var animation = new ColorAnimation
+                {
+                    To = textBrush.Color,
+                    Duration = TimeSpan.FromSeconds(0.25),
+                    EasingFunction = new CubicEase { EasingMode = EasingMode.EaseInOut }
+                };
+                newBrush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
+            }
+
+            // Set the now opened menu's button color
+            var highlightBrush = Application.Current.Resources["Highlight"] as SolidColorBrush;
+            if (highlightBrush == null)
+            {
+                return;
+            }
+
+            var selectedButton = menuButtons[currentMenu];
+            var selectedBrush = selectedButton.Foreground as SolidColorBrush;
+            if (selectedBrush == null)
+            {
+                return;
+            }
+
+            // Assign a new brush instance for animation
+            var newSelectedBrush = new SolidColorBrush(selectedBrush.Color);
+            selectedButton.Foreground = newSelectedBrush;
+
+            var animationBrush = new ColorAnimation
+            {
+                To = highlightBrush.Color,
+                Duration = TimeSpan.FromSeconds(0.25),
+                EasingFunction = new CubicEase { EasingMode = EasingMode.EaseInOut }
+            };
+            newSelectedBrush.BeginAnimation(SolidColorBrush.ColorProperty, animationBrush);
+        }
+
+        private void Btn_Home_Click(object sender, RoutedEventArgs e)
+        {
+            ResetGridVisibility(this);
+            currentMenu = 0;
+            MenuButtonColorSet(this);
+            Grd_Home.Visibility = Visibility.Visible;
+        }
+
+        private void Btn_Setup_Click(object sender, RoutedEventArgs e)
+        {
+            ResetGridVisibility(this);
+            currentMenu = 1;
+            MenuButtonColorSet(this);
+            Grd_Setup.Visibility = Visibility.Visible;
+        }
+
+        private void Btn_Telemetry_Click(object sender, RoutedEventArgs e)
+        {
+            ResetGridVisibility(this);
+            currentMenu = 2;
+            MenuButtonColorSet(this);
+            Grd_Telemetry.Visibility = Visibility.Visible;
+        }
+
+        #endregion
     }
 }
